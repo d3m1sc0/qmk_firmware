@@ -58,24 +58,42 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #   define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
 #endif
 
-// Combo stuff
-#define COMBO_VARIABLE_LEN
-#define COMBO_TERM 50
+
+/* MOUSE */
+// #define MK_3_SPEED
+// #define MK_MOMENTARY_ACCEL
+// #define MOUSEKEY_DELAY      100
+// #define MOUSEKEY_INTERVAL    10
+// #define MOUSEKEY_MAX_SPEED    8
+// #define MK_C_OFFSET_UNMOD    16
+// #define MK_C_INTERVAL_UNMOD  16
+// #define MK_C_OFFSET_0         1
+// #define MK_C_INTERVAL_0      16
+// #define MK_C_OFFSET_1         4
+// #define MK_C_INTERVAL_1      16
+// #define MK_C_OFFSET_2        32
+// #define MK_C_INTERVAL_2      16
+
+#define MOUSEKEY_INTERVAL       20
+#define MOUSEKEY_DELAY          0
+#define MOUSEKEY_TIME_TO_MAX    60
+#define MOUSEKEY_MAX_SPEED      7
+#define MOUSEKEY_WHEEL_DELAY 0
 
 
- #define USB_MAX_POWER_CONSUMPTION 100
+// #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
 
 // Mouse key speed and acceleration.
-#undef MOUSEKEY_DELAY
-#define MOUSEKEY_DELAY          0
-#undef MOUSEKEY_INTERVAL
-#define MOUSEKEY_INTERVAL       16
-#undef MOUSEKEY_WHEEL_DELAY
-#define MOUSEKEY_WHEEL_DELAY    0
-#undef MOUSEKEY_MAX_SPEED
-#define MOUSEKEY_MAX_SPEED      6
-#undef MOUSEKEY_TIME_TO_MAX
-#define MOUSEKEY_TIME_TO_MAX    64
+// #undef MOUSEKEY_DELAY
+// #define MOUSEKEY_DELAY          0
+// #undef MOUSEKEY_INTERVAL
+// #define MOUSEKEY_INTERVAL       16
+// #undef MOUSEKEY_WHEEL_DELAY
+// #define MOUSEKEY_WHEEL_DELAY    0
+// #undef MOUSEKEY_MAX_SPEED
+// #define MOUSEKEY_MAX_SPEED      6
+// #undef MOUSEKEY_TIME_TO_MAX
+// #define MOUSEKEY_TIME_TO_MAX    64
 
 
 

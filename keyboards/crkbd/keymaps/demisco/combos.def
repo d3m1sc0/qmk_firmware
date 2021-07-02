@@ -1,0 +1,9 @@
+// Top row combos
+COMB(DktpLft,       LGUI(LCTL(KC_LEFT)), KC_Y, KC_F)
+COMB(DktpRt,        LGUI(LCTL(KC_RIGHT)), KC_L, KC_DOT)
+COMB(dotuBspc,      KC_BSPC,         KC_DOT, KC_U)
+
+// Bottom row combos
+COMB(wcommBTN1,     KC_BTN1,         KC_W, KC_COMM)
+COMB(commsclnBTN3,  KC_BTN3,         KC_COMM, KC_SCLN)
+COMB(sclnquotBTN2,  KC_BTN2,         KC_SCLN, KC_QUOT)
