@@ -7,3 +7,7 @@ VPATH  +=  keyboards/gboards/
 
 # COMPILE OPTIONS
 LTO_ENABLE = yes
+
+STENO_ENABLE = yes # enable Stenography
+NKRO_ENABLE = yes # enable N-Key RollOver
+KEYBOARD_SHARED_EP = yes # “shared endpoints” for mouse & steno

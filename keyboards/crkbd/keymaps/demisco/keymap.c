@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 #include "g/keymap_combo.h"
+#include "keymap_steno.h"
 #include <stdio.h>
 
 
@@ -33,16 +34,43 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define KC_SAI RGB_SAI
 #define KC_VAI RGB_VAI
 
-enum layers { BASE, MEDR, NAVR, MOUR, NSSL, NSL, FUNL };
+enum layers { BASE, MEDR, NAVR, MOUR, NSSL, NSL, FUNL, STENO };
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+  /* RSTHG
+ * +----------------------------------+                    +----------------------------------+
+ * |   Q  |   W  |   F  |   P  |   B  |                    |   J  |   L  |   U  |   Y  |   '  |
+ * |------+------+------+------+------|                    |------+------+------+------+------|
+ * |LGUI/R|LALT/S|LCTL/T|LSFT/H|   G  |                    |   M  |LSFT/N|LCTL/A|LALT/I|LGUI/O|
+ * |------+------+------+------+------|                    |------+------+------+------+------|
+ * |   Z  |   X  |   C  |   D  |   V  |                    |   \  |   K  |   ,  |   .  |   /  |
+ * +----------------------------------------+         +---------------------------------------+ 
+ *                     |  ESC |  SPC | TAB  |         |  ENT |   E  |  DEL |
+ *                     |(MEDR)|(NAVR)|(MOUR)|         |(NSSL)|(NSL) |(FUNL)|
+ *                     +--------------------+         +--------------------+
+ */
+
   [BASE] = LAYOUT_demisco(
-    KC_J,              KC_C,              KC_Y,              KC_F,              KC_K,              KC_Z,              KC_L,              KC_DOT,            KC_U,              KC_Q,
-    LGUI_T(KC_R),      LALT_T(KC_S),      LCTL_T(KC_T),      LSFT_T(KC_H),      KC_D,              KC_M,              LSFT_T(KC_N),      LCTL_T(KC_A),      LALT_T(KC_I),      LGUI_T(KC_O),
-    KC_SLSH,           ALGR_T(KC_V),      KC_G,              KC_P,              KC_B,              KC_X,              KC_W,              KC_COMM,           KC_SCLN,           KC_QUOT,
+    KC_Q,              KC_W,              KC_F,              KC_P,              KC_B,              KC_J,              KC_L,              KC_U,              KC_Y,              KC_QUOT,
+    LGUI_T(KC_R),      LALT_T(KC_S),      LCTL_T(KC_T),      LSFT_T(KC_H),      KC_G,              KC_M,              LSFT_T(KC_N),      LCTL_T(KC_A),      LALT_T(KC_I),      LGUI_T(KC_O),
+    KC_Z,              ALGR_T(KC_X),      KC_C,              KC_D,              KC_V,              KC_BSLS,           KC_K,              KC_COMM,           KC_DOT,            KC_SLSH,
     KC_NP,             KC_NP,             LT(MEDR, KC_ESC),  LT(NAVR, KC_SPC),  LT(MOUR, KC_TAB),  LT(NSSL, KC_ENT),  LT(NSL, KC_E),     LT(FUNL, KC_DEL),  KC_NP,             KC_NP
   ),
+
+
+  /* NAVR - Navigation
+ * +----------------------------------+                    +----------------------------------+
+ * |  RST |      |      |      |      |                    | AGIN | UNDO |  CUT | COPY | PSTE |
+ * |------+------+------+------+------|                    |------+------+------+------+------|
+ * | LGUI | LALT | LCTL | LSFT |      |                    | CAPS | LEFT | DOWN |  UP  | RGHT |
+ * |------+------+------+------+------|                    |------+------+------+------+------|
+ * |      |      |      |      |      |                    |  INS | HOME | PGDN | PGUP |  END |
+ * +----------------------------------------+         +---------------------------------------+
+ *                     |      |      |      |         |  ENT | BSPC |  DEL |
+ *                     |      |      |      |         |      |      |      |
+ *                     +--------------------+         +--------------------+
+ */
 
   [NAVR] = LAYOUT_demisco(
     KC_RST,  KC_NA,   KC_NA,   KC_NA,   KC_NA,   KC_AGIN, KC_UNDO, KC_CUT,  KC_COPY, KC_PSTE,
@@ -51,6 +79,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NP,   KC_NP,   KC_NA,   KC_NA,   KC_NA,   KC_ENT,  KC_BSPC, KC_DEL,  KC_NP,   KC_NP
   ),
 
+  /* MOUR - Mouse
+ * +----------------------------------+                    +----------------------------------+
+ * |  RST |      |      |      |      |                    |      |      |      |      |      |
+ * |------+------+------+------+------|                    |------+------+------+------+------|
+ * | LGUI | LALT | LCTL | LSFT |      |                    |      | MLFT | MDWN |  MUP | MRHT |
+ * |------+------+------+------+------|                    |------+------+------+------+------|
+ * |      |      |      |      |      |                    |      | MWHL | MWHD | MWHU | MWHR |
+ * +----------------------------------------+         +---------------------------------------+
+ *                     |      |      |      |         | BTN1 | BTN2 | BTN3 |
+ *                     |      |      |      |         |      |      |      |
+ *                     +--------------------+         +--------------------+
+ */
   [MOUR] = LAYOUT_demisco(
     KC_RST,  KC_NA,   KC_NA,   KC_NA,   KC_NA,   KC_NU,   KC_NU,   KC_NU,   KC_NU,   KC_NU,
     KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, KC_NA,   KC_NU,   KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R,
@@ -58,6 +98,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NP,   KC_NP,   KC_NA,   KC_NA,   KC_NA,   KC_BTN1, KC_BTN3, KC_BTN2, KC_NP,   KC_NP
   ),
 
+  /* MEDR - Media
+ * +----------------------------------+                    +----------------------------------+
+ * |  RST |      |      |      |      |                    |  TOG |  MOD |  HUI |  SAI |  VAI |
+ * |------+------+------+------+------|                    |------+------+------+------+------|
+ * | LGUI | LALT | LCTL | LSFT |      |                    |      | MPRV | VOLD | VOLU | MNXT |
+ * |------+------+------+------+------|                    |------+------+------+------+------|
+ * |      |      |      |      |      |                    |      |      |      |      |      |
+ * +----------------------------------------+         +---------------------------------------+
+ *                     |      |      |      |         | MSTP | MPLY | MUTE |
+ *                     |      |      |      |         |      |      |      |
+ *                     +--------------------+         +--------------------+
+ */
   [MEDR] = LAYOUT_demisco(
     KC_RST,  KC_NA,   KC_NA,   KC_NA,   KC_NA,   KC_TOG,  KC_MOD,  KC_HUI,  KC_SAI,  KC_VAI,
     KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, KC_NA,   KC_NU,   KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,
@@ -65,28 +117,87 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NP,   KC_NP,   KC_NA,   KC_NA,   KC_NA,   KC_MSTP, KC_MPLY, KC_MUTE, KC_NP,   KC_NP
   ),
 
+  /* FUNL - Function
+ * +----------------------------------+                    +----------------------------------+
+ * |  F12 |  F7  |  F8  |  F9  | PSCR |                    |STENO |      |      |      |  RST |
+ * |------+------+------+------+------|                    |------+------+------+------+------|
+ * |  F11 |  F4  |  F5  |  F6  | SLCK |                    |      | LSFT | LCTL | LALT | LGUI |
+ * |------+------+------+------+------|                    |------+------+------+------+------|
+ * |  F10 |  F1  |  F2  |  F3  | PAUS |                    |      |      |      |      |      |
+ * +----------------------------------------+         +---------------------------------------+
+ *                     |  APP |  SPC |  TAB |         |      |      |      |
+ *                     |      |      |      |         |      |      |      |
+ *                     +--------------------+         +--------------------+
+ */
   [FUNL] = LAYOUT_demisco(
-    KC_F12,  KC_F7,   KC_F8,   KC_F9,   KC_PSCR, KC_NA,   KC_NA,   KC_NA,   KC_NA,   KC_RST,
-    KC_F11,  KC_F4,   KC_F5,   KC_F6,   KC_SLCK, KC_NA,   KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,
-    KC_F10,  KC_F1,   KC_F2,   KC_F3,   KC_PAUS, KC_NA,   KC_NA,   KC_NA,   KC_ALGR, KC_NA,
-    KC_NP,   KC_NP,   KC_APP,  KC_SPC,  KC_TAB,  KC_NA,   KC_NA,   KC_NA,   KC_NP,   KC_NP
+    KC_F12,  KC_F7,   KC_F8,   KC_F9,   KC_PSCR, TO(STENO), KC_NA,   KC_NA,   KC_NA,   KC_RST,
+    KC_F11,  KC_F4,   KC_F5,   KC_F6,   KC_SLCK, KC_NA,     KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,
+    KC_F10,  KC_F1,   KC_F2,   KC_F3,   KC_PAUS, KC_NA,     KC_NA,   KC_NA,   KC_ALGR, KC_NA,
+    KC_NP,   KC_NP,   KC_APP,  KC_SPC,  KC_TAB,  KC_NA,     KC_NA,   KC_NA,   KC_NP,   KC_NP
   ),
 
+  /* NSL - Numbers
+ * +----------------------------------+                    +----------------------------------+
+ * |   [  |   7  |   8  |   9  |  ]   |                    |      |      |      |      |  RST |
+ * |------+------+------+------+------|                    |------+------+------+------+------|
+ * |   ;  |   4  |   5  |   6  |  =   |                    |      | LSFT | LCTL | LALT | LGUI |
+ * |------+------+------+------+------|                    |------+------+------+------+------|
+ * |   `  |   1  |   2  |   3  |  \   |                    |      |      |      |      |      |
+ * +----------------------------------------+         +---------------------------------------+
+ *                     |   .  |   0  |   -  |         |      |      |      |
+ *                     |      |      |      |         |      |      |      |
+ *                     +--------------------+         +--------------------+
+ */
   [NSL] = LAYOUT_demisco(
-    KC_LBRC, KC_7,    KC_8,    KC_9,    KC_RBRC, KC_NA,   KC_NA,   KC_NA,   KC_NA,   KC_RST,
-    KC_SCLN, KC_4,    KC_5,    KC_6,    KC_EQL,  KC_NA,   KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,
-    KC_GRV,  KC_1,    KC_2,    KC_3,    KC_BSLS, KC_NA,   KC_NA,   KC_NA,   KC_ALGR, KC_NA,
-    KC_NP,   KC_NP,   KC_DOT,  KC_0,    KC_MINS, KC_NA,   KC_NA,   KC_NA,   KC_NP,   KC_NP
+    KC_LBRC, KC_7,    KC_8,    KC_9,    KC_RBRC, KC_NA,  KC_NA,   KC_NA,   KC_NA,   KC_RST,
+    KC_SCLN, KC_4,    KC_5,    KC_6,    KC_EQL,  KC_NA,  KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,
+    KC_GRV,  KC_1,    KC_2,    KC_3,    KC_BSLS, KC_NA,  KC_NA,   KC_NA,   KC_ALGR, KC_NA,
+    KC_NP,   KC_NP,   KC_DOT,  KC_0,    KC_MINS, KC_NA,  KC_NA,   KC_NA,   KC_NP,   KC_NP
   ),
 
+  /* NSSL - Symbols
+ * +----------------------------------+                    +----------------------------------+
+ * |   {  |   &  |   *  |   (  |  ]   |                    |      |      |      |      |  RST |
+ * |------+------+------+------+------|                    |------+------+------+------+------|
+ * |   :  |   $  |   %  |   ^  |  +   |                    |      | LSFT | LCTL | LALT | LGUI |
+ * |------+------+------+------+------|                    |------+------+------+------+------|
+ * |   ~  |   !  |   @  |   #  |  |   |                    |      |      |      |      |      |
+ * +----------------------------------------+         +---------------------------------------+
+ *                     |   >  |   )  |   _  |         |      |      |      |
+ *                     |      |      |      |         |      |      |      |
+ *                     +--------------------+         +--------------------+
+ */
   [NSSL] = LAYOUT_demisco(
-    KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR, KC_NA,   KC_NA,   KC_NA,   KC_NA,   KC_RST,
-    KC_COLN, KC_DLR,  KC_PERC, KC_CIRC, KC_PLUS, KC_NA,   KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,
-    KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_PIPE, KC_NA,   KC_NA,   KC_NA,   KC_ALGR, KC_NA,
-    KC_NP,   KC_NP,   KC_GT,   KC_RPRN, KC_UNDS, KC_NA,   KC_NA,   KC_NA,   KC_NP,   KC_NP
+    KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR, KC_NA,  KC_NA,   KC_NA,   KC_NA,   KC_RST,
+    KC_COLN, KC_DLR,  KC_PERC, KC_CIRC, KC_PLUS, KC_NA,  KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI,
+    KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_PIPE, KC_NA,  KC_NA,   KC_NA,   KC_ALGR, KC_NA,
+    KC_NP,   KC_NP,   KC_GT,   KC_RPRN, KC_UNDS, KC_NA,  KC_NA,   KC_NA,   KC_NP,   KC_NP
+  ),
+
+  /* STENO - Stenography (Plover)
+ * +----------------------------------+                    +----------------------------------+
+ * |   #  |   #  |   #  |   #  |  #   |                    |   #  |   #  |   #  |   #  | BASE |
+ * |------+------+------+------+------|                    |------+------+------+------+------|
+ * |   S  |   T  |   P  |   H  |  *   |                    |   F  |   P  |   L  |   T  |   D  |
+ * |------+------+------+------+------|                    |------+------+------+------+------|
+ * |   S  |   K  |   W  |   R  |  *   |                    |   R  |   B  |   G  |   S  |   Z  |
+ * +----------------------------------------+         +---------------------------------------+
+ *                     |   A  |   O  |   *  |         |   E  |  U   |  *   |
+ *                     |      |      |      |         |      |      |      |
+ *                     +--------------------+         +--------------------+
+ */
+  [STENO] = LAYOUT_demisco(
+    STN_N1,  STN_N2,  STN_N3,  STN_N4,  STN_N5,   STN_N6, STN_N7, STN_N8, STN_N9, TO(BASE),
+    STN_S1,  STN_TL,  STN_PL,  STN_HL,  STN_ST1,  STN_FR, STN_PR, STN_LR, STN_TR, STN_DR,
+    STN_S2,  STN_KL,  STN_WL,  STN_RL,  STN_ST2,  STN_RR, STN_BR, STN_GR, STN_SR, STN_ZR,
+    KC_NP,   KC_NP,   STN_A,   STN_O,   STN_ST3,  STN_E,  STN_U, STN_ST4, KC_NP,  KC_NP
   )
 };
 
+
+void matrix_init_user() {
+  steno_set_mode(STENO_MODE_GEMINI); // or STENO_MODE_BOLT
+}
 
 #ifdef OLED_DRIVER_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {

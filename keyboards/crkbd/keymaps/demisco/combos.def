@@ -1,9 +1,26 @@
 // Top row combos
-COMB(DktpLft,       LGUI(LCTL(KC_LEFT)), KC_Y, KC_F)
-COMB(DktpRt,        LGUI(LCTL(KC_RIGHT)), KC_L, KC_DOT)
-COMB(dotuBspc,      KC_BSPC,         KC_DOT, KC_U)
+// COMB(DktpLft,       LGUI(LCTL(KC_LEFT)), KC_Y, KC_F)
+// COMB(DktpRt,        LGUI(LCTL(KC_RIGHT)), KC_L, KC_DOT)
+// COMB(dotuBspc,      KC_BSPC,         KC_DOT, KC_U)
+
+COMB(DktpLft,       LGUI(LCTL(KC_LEFT)), KC_F, KC_P)
+COMB(DktpRt,        LGUI(LCTL(KC_RIGHT)), KC_L, KC_U)
+COMB(uyBspc,      KC_BSPC,         KC_U, KC_Y)
 
 // Bottom row combos
-COMB(wcommBTN1,     KC_BTN1,         KC_W, KC_COMM)
-COMB(commsclnBTN3,  KC_BTN3,         KC_COMM, KC_SCLN)
-COMB(sclnquotBTN2,  KC_BTN2,         KC_SCLN, KC_QUOT)
+// COMB(wcommBTN1,     KC_BTN1,         KC_W, KC_COMM)
+// COMB(commsclnBTN3,  KC_BTN3,         KC_COMM, KC_SCLN)
+// COMB(sclnquotBTN2,  KC_BTN2,         KC_SCLN, KC_QUOT)
+
+COMB(kcommBTN1,     KC_BTN1,         KC_K, KC_COMM)
+COMB(commdotBTN3,   KC_BTN3,         KC_COMM, KC_DOT)
+COMB(dotslshBTN2,   KC_BTN2,         KC_DOT, KC_SLSH)
+
+// Helpers for Git
+// SUBS(gmChkMaster, "git checkout master ", KC_G, KC_M)
+// SUBS(goPOMaster,  "git pull origin master ", KC_G,  LGUI_T(KC_O))
+// SUBS(gdChkDev,    "git checkout -b dev-dmi ", KC_G, KC_D)
+// SUBS(gaAdd,       "git add . ", KC_G,  LCTL_T(KC_A))
+// SUBS(gcCommit,    "git commit -m  ", KC_G, KC_C)
+// SUBS(gpPushDev,   "git push origin dev-dmi ", KC_G, KC_P)
+// SUBS(grRemDev,    "git branch -d dev-dmi ", KC_G, LGUI_T(KC_R))
