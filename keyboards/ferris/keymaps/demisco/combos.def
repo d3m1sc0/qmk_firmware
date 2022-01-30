@@ -2,10 +2,10 @@
 COMB(DktpLft,       LGUI(LCTL(KC_LEFT)),  KC_F, KC_P)
 COMB(DktpRt,        LGUI(LCTL(KC_RIGHT)), KC_L, KC_U)
 COMB(uyBspc,        KC_BSPC,              KC_U, KC_Y)
-COMB(wfEsc,         KC_ESC,               KC_W, KC_F)
+COMB(wfDel,         KC_DEL,               KC_W, KC_F)
 
 // Bottom row combos
 COMB(kcommBTN1,     KC_BTN1,         KC_K, KC_COMM)
 COMB(commdotBTN3,   KC_BTN3,         KC_COMM, KC_DOT)
 COMB(dotslshBTN2,   KC_BTN2,         KC_DOT, KC_SLSH)
-COMB(xcDel,         KC_DEL,          KC_X, KC_C)
+COMB(xcEsc,         KC_ESC,          KC_X, KC_C)
